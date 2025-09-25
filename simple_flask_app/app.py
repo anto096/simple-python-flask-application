@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello from Flask + Nexus packaging demo!"
+    return "Welcome everyone! David DevOps!"
 
 if __name__ == "__main__":
     # Bind to all interfaces, port 5000
