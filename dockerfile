@@ -2,23 +2,25 @@
 FROM python:3.10-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Set working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy requirements and source code
+# Copy project files
 COPY setup.py .
-COPY simple_flask_app/ ./simple_flask_app/
-COPY tests/ ./tests/
+COPY requirements.txt .
+COPY simple_flask_app/ ./simple_flask_app
+COPY tests/ ./tests
 
-# Install dependencies
+# Upgrade pip and install dependencies
 RUN pip install --upgrade pip setuptools wheel \
+    && pip install -r requirements.txt \
     && pip install -e .
 
-# Expose the Flask port
+# Expose Flask port
 EXPOSE 5000
 
 # Command to run the Flask app
-CMD ["python", "-m", "simple_flask_app.app"]
+CMD ["python", "-m", "simple_flask_app"]
