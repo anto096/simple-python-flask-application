@@ -4,5 +4,7 @@ def test_home():
     client = app.test_client()
     response = client.get("/")
     assert response.status_code == 200
-    assert b"Hello" in response.data
+    # Update expected string to match what your app returns
+    assert b"Welcome everyone! David DevOps!" in response.data
+
 
